@@ -54,4 +54,15 @@ describe('lab-03-separation-of-concern routes', () => {
         });
       });
   });
+
+  it('gets an order by id in our database', () => {    
+    return request(app)
+      .get('/api/v1/orders/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 5,
+        });
+      });
+  });
 });
