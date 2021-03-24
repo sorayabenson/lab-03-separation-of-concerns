@@ -10,7 +10,7 @@ jest.mock('twilio', () => () => ({
   },
 }));
 
-describe('03_separation-of-concerns-demo routes', () => {
+describe('lab-03-separation-of-concern routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
