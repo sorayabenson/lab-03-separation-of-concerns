@@ -67,4 +67,15 @@ describe('lab-03-separation-of-concern routes', () => {
       });
   });
 
+  it('deletes an order by id from our database', () => {    
+    return request(app)
+      .delete('/api/v1/orders/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 5,
+        });
+      });
+  });
+
 });
