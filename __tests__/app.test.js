@@ -25,7 +25,7 @@ describe('lab-03-separation-of-concern routes', () => {
       .post('/api/v1/orders')
       .send({ quantity: 10 })
       .then((res) => {
-        // expect(createMessage).toHaveBeenCalledTimes(1);
+        //expect(createMessage).toHaveBeenCalledTimes(1);
         expect(res.body).toEqual({
           id: '2',
           quantity: 10,
@@ -33,22 +33,11 @@ describe('lab-03-separation-of-concern routes', () => {
       });
   });
 
-  // it.skip('ASYNC/AWAIT: creates a new order in our database and sends a text message', async () => {
-  //   const res = await request(app)
-  //     .post('/api/v1/orders')
-  //     .send({ quantity: 10 });
-
-  //   expect(res.body).toEqual({
-  //     id: '1',
-  //     quantity: 10,
-  //   });
-  // });
-
   it('gets all the orders in our database', () => {    
     return request(app)
       .get('/api/v1/orders')
       .then((res) => {
-        expect(res.body).toEqual({
+        expect(res.body[0]).toEqual({
           id: '1',
           quantity: 5,
         });
@@ -59,10 +48,23 @@ describe('lab-03-separation-of-concern routes', () => {
     return request(app)
       .get('/api/v1/orders/1')
       .then((res) => {
-        expect(res.body).toEqual({
+        expect(res.body[0]).toEqual({
           id: '1',
           quantity: 5,
         });
       });
   });
+
+  it('put updates an order in our database and sends a text message', () => {
+    return request(app)
+      .put('/api/v1/orders/1')
+      .send({ quantity: 15 })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 15,
+        });
+      });
+  });
+
 });
