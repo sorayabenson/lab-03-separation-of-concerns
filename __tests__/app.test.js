@@ -60,6 +60,7 @@ describe('lab-03-separation-of-concern routes', () => {
       .put('/api/v1/orders/1')
       .send({ quantity: 15 })
       .then((res) => {
+        //expect(createMessage).toHaveBeenCalledTimes(1);
         expect(res.body).toEqual({
           id: '1',
           quantity: 15,
@@ -71,6 +72,7 @@ describe('lab-03-separation-of-concern routes', () => {
     return request(app)
       .delete('/api/v1/orders/1')
       .then((res) => {
+        //expect(createMessage).toHaveBeenCalledTimes(1);
         expect(res.body).toEqual({
           id: '1',
           quantity: 5,
